@@ -1,4 +1,4 @@
-const FolderssService = {
+const FoldersService = {
     getAllFolderss(knex) {
       return knex.select('*').from('folders')
     },
