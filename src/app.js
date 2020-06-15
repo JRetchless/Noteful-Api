@@ -16,7 +16,7 @@ app.use(morgan(morganOption))
 app.use(helmet())
 app.use(
     cors({
-      Origin: "https://noteful-kappa-ivory.now.sh"
+      origin: "https://noteful-kappa-ivory.now.sh"
     }))
 
 app.use('/api/notes', notesRouter)
