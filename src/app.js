@@ -19,8 +19,8 @@ app.use(
       origin: "https://noteful-kappa-ivory.now.sh"
     }))
 
-app.use('/api/notes', notesRouter)
-app.use('/api/folders', foldersRouter)
+app.use('/notes', notesRouter)
+app.use('/folders', foldersRouter)
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')
