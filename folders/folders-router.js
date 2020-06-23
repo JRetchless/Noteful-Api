@@ -16,31 +16,31 @@ const serializeFolder = folder => ({
 foldersRouter
 .route('/')
 .get((req, res) => {
-    FoldersService.getAllfolders(
+    FoldersService.getAllFolders(
       req.app.get('db'),
       )
   .then(folders => {
-    res.json(folders.map(serializefolder))
+    res.json(folders.map(serializeFolder))
   }) 
   })
 .post(jsonParser, (req, res, next) => {
     const { id, name, modified, folderId, content } = req.body
-    const newfolder = {id, name, modified, folderId, content}
-    for (const [key, value] of Object.entries(newfolder)) {
+    const newFolder = {id, name, modified, folderId, content}
+    for (const [key, value] of Object.entries(newFolder)) {
         if (value == null) {
           return res.status(400).json({
             error: { message: `Missing '${key}' in request body` }
           })
         }
     }
-    FoldersService.insertfolder(
+    FoldersService.insertFolder(
         req.app.get('db'),
-        newfolder
+        newFolder
     )
      .then(folder => {
          res
             .status(201)
-            .json(serializefolder(folder))
+            .json(serializeFolder(folder))
      })
      .catch(next)
       
@@ -56,11 +56,11 @@ foldersRouter
 .then(folder => {
     res
     .status(201)
-    .json(serializefolder(folder))
+    .json(serializeFolder(folder))
 })
 })
 .delete((req, res, next) => {
-    FoldersService.deletefolder(
+    FoldersService.deleteFolder(
       req.app.get('db'),
       req.params.folderId
     )
@@ -82,7 +82,7 @@ foldersRouter
         }
       })
 
-    FoldersService.updatefolder(
+    FoldersService.updateFolder(
       req.app.get('db'),
       req.params.folderId,
       folderToUpdate
