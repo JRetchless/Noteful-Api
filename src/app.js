@@ -16,7 +16,7 @@ app.use(morgan(morganOption))
 app.use(helmet())
 app.use(
     cors({
-      origin: "https://noteful-kappa-ivory.now.sh"
+      origin: "https://noteful.jonretchless.vercel.app"
     }))
 
 app.use('notes', notesRouter)
