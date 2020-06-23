@@ -16,7 +16,7 @@ const serializeFolder = folder => ({
 foldersRouter
 .route('/')
 .get((req, res) => {
-    foldersService.getAllfolders(
+    FoldersService.getAllfolders(
       req.app.get('db'),
       )
   .then(folders => {
@@ -33,7 +33,7 @@ foldersRouter
           })
         }
     }
-    foldersService.insertfolder(
+    FoldersService.insertfolder(
         req.app.get('db'),
         newfolder
     )
@@ -49,7 +49,7 @@ foldersRouter
 foldersRouter
 .route('/:folderId')
 .get((req, res) => {
-    foldersService.getById(
+    FoldersService.getById(
         req.app.get('db'),
         req.params.folderId
     )
@@ -60,7 +60,7 @@ foldersRouter
 })
 })
 .delete((req, res, next) => {
-    foldersService.deletefolder(
+    FoldersService.deletefolder(
       req.app.get('db'),
       req.params.folderId
     )
@@ -82,7 +82,7 @@ foldersRouter
         }
       })
 
-    foldersService.updatefolder(
+    FoldersService.updatefolder(
       req.app.get('db'),
       req.params.folderId,
       folderToUpdate

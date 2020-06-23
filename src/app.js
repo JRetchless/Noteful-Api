@@ -21,8 +21,8 @@ app.use(
         "http://localhost:3000"
     }))
 
-app.use('notes', notesRouter)
-app.use('folders', foldersRouter)
+app.use('/notes', notesRouter)
+app.use('/folders', foldersRouter)
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')
