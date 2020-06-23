@@ -16,7 +16,9 @@ app.use(morgan(morganOption))
 app.use(helmet())
 app.use(
     cors({
-      origin: "https://noteful.jonretchless.vercel.app"
+      origin:
+        // "https://noteful.jonretchless.vercel.app"
+        "http://localhost:3000"
     }))
 
 app.use('notes', notesRouter)
