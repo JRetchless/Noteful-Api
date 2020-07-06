@@ -11,8 +11,8 @@ const app = express()
 app.use(
   cors({
     origin:
-      // "https://noteful.jonretchless.vercel.app"
-      "http://localhost:3000"
+      "https://noteful.jonretchless.vercel.app"
+      // "http://localhost:3000"
   }))
 
 
