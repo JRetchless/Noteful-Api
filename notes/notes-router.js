@@ -9,7 +9,7 @@ const serializeNote = note => ({
     id: note.id,
     name: xss(note.name),
     modified: note.modified,
-    folderId: note.folderId,
+    folderId: String(note.folder_id),
     content: xss(note.content)
 })
 
@@ -24,10 +24,10 @@ notesRouter
   }) 
   })
 .post(jsonParser, (req, res, next) => {
-    const { id, name, modified, folderId, content } = req.body
-    const newNote = {id, name, modified, folderId, content}
+    const { name, modified, folder_id, content } = req.body
+    const newNote = {name, modified, folder_id, content}
     for (const [key, value] of Object.entries(newNote)) {
-        if (value == null && key ==! 'id') {
+        if (value == null) {
           return res.status(400).json({
             error: { message: `Missing '${key}' in request body` }
           })
@@ -60,11 +60,10 @@ notesRouter
 })
 })
 .delete((req, res, next) => {
-    NotesService.deletenote(
+    NotesService.deleteNote(
       req.app.get('db'),
-      req.params.noteId
+      req.body.numNoteId
     )
-
       .then(numRowsAffected => {
         res.status(204).end()
       })
